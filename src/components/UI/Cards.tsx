@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { WobbleCard } from "../magicui/wobble-card";
 import { useGlobalContext } from "@/context/GlobalContext";
 import Image from "next/image";
+
 type NewsArticle = {
     title: string;
     description: string;
@@ -15,20 +16,38 @@ export function EconomicCardList() {
     const { topic } = useGlobalContext();
 
     const [cards, setCards] = useState<NewsArticle[]>([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
+                setLoading(true);
                 const res = await fetch(`/api/getData?topic=${topic}`);
                 const data = await res.json();
                 setCards(data.newsArticles); // make sure each article includes 'url'
             } catch (error) {
                 console.error("Error fetching economic data:", error);
+            } finally {
+                setLoading(false);
             }
         };
 
         fetchData();
     }, [topic]);
+
+    if (loading) {
+        return (
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 max-w-7xl mx-auto w-full">
+                {Array.from({ length: 6 }).map((_, index) => (
+                    <div
+                        key={index}
+                        className={`col-span-1 ${index % 3 === 0 ? "lg:col-span-2" : ""
+                            } min-h-[300px] bg-gray-300 animate-pulse rounded-lg`}
+                    ></div>
+                ))}
+            </div>
+        );
+    }
 
     return (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 max-w-7xl mx-auto w-full">
@@ -54,17 +73,15 @@ export function EconomicCardList() {
                                 </span>
                             </p>
                         </div>
-                        {
-                            article.urlToImage && 
+                        {article.urlToImage && (
                             <Image
                                 src={`/api/image?url=${encodeURIComponent(article.urlToImage ?? '')}`}
                                 width={500}
                                 height={500}
                                 alt="article"
-                                className="absolute right-0 bottom-0 object-contain rounded-2xl grayscale pointer-events-none opacity-30"
+                                className="absolute right-0 bottom-0 object-contain rounded-2xl grayscale pointer-events-none opacity-40"
                             />
-                        }
-                        
+                        )}
                     </WobbleCard>
                 </a>
             ))}
