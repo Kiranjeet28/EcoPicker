@@ -1,10 +1,9 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
 import { WobbleCard } from "../magicui/wobble-card";
 import { useGlobalContext } from "@/context/GlobalContext";
-
+import Image from "next/image";
 type NewsArticle = {
     title: string;
     description: string;
@@ -46,7 +45,7 @@ export function EconomicCardList() {
                             } min-h-[300px] relative transition hover:scale-[1.02]`}
                     >
                         <div className="relative z-10 p-4">
-                            <h2 className="max-w-80 text-left text-balance text-xl md:text-xxl lg:text-3xl font-bold tracking-[-0.030em] z-50 absolute text-white">
+                            <h2 className="max-w-80 text-left text-balance text-xl md:text-xxl lg:text-3xl font-bold tracking-[-0.015em]  text-white">
                                 {article.title}
                             </h2>
                             <p className="mt-4 max-w-[26rem] text-left text-base/6 text-neutral-200">
@@ -58,7 +57,7 @@ export function EconomicCardList() {
                         {
                             article.urlToImage && 
                             <Image
-                                src={article.urlToImage}
+                                src={`/api/image?url=${encodeURIComponent(article.urlToImage ?? '')}`}
                                 width={500}
                                 height={500}
                                 alt="article"
