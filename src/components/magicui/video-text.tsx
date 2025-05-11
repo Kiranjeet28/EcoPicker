@@ -76,7 +76,7 @@ export function VideoText({
   fontWeight = "bold",
   textAnchor = "middle",
   dominantBaseline = "middle",
-  fontFamily = "sans-serif",
+  fontFamily = "monospace",
   as: Component = "div",
 }: VideoTextProps) {
   const [svgMask, setSvgMask] = useState("");

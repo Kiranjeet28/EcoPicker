@@ -11,8 +11,8 @@ function Page() {
       <div className=' flex justify-center items-center'>
         <Economic />
       </div>
+      <div className='flex justify-center flex-col items-center px-4 mt-2'>
       <TopicList />
-      <div className='flex justify-center items-center px-4 mt-2'>
 
       <EconomicCardList/>
       </div>

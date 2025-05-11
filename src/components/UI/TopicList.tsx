@@ -24,8 +24,8 @@ function TopicList() {
   };
 
   return (
-    <div className="overflow-x-auto w-full">
-      <div className="flex gap-2 px-4 py-2 w-max">
+    <div className="overflow-x-auto w-full mb-4 px-2 ">
+      <div className="flex gap-2 px-4 w-max">
         {economicTopics.map((topic, index) => (
           <Box
             key={index}
