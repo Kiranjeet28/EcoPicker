@@ -6,8 +6,7 @@ import React from 'react'
 
 function Page() {
   return (
-    <div className="bg-gradient-to-b from-[#3c274e] via-[#95509a] to-[#3c274e]">
-      <Navbar />
+    <div className="">
       <div className=' flex justify-center items-center'>
         <Economic />
       </div>
