@@ -1,6 +1,5 @@
 import { EconomicCardList } from '@/components/UI/Cards'
 import Economic from '@/components/UI/Economic'
-import Navbar from '@/components/UI/Navbar'
 import TopicList from '@/components/UI/TopicList'
 import React from 'react'
 
